@@ -10,17 +10,14 @@ class Board
   end
 
   def print_board
-    """   |   |
-        --+---+--
-          |   |
-        --+---+--
-          |   |
+    puts
+  puts  """    |   |
+  --+---+--
+    |   |
+  --+---+--
+    |   |
     """
 
-  end
-
-  def player_move
-    puts "Enter 1-9 for space 1-9"
   end
 
   def computer_move
@@ -66,7 +63,10 @@ class Game
 
     @player = Player.new(name)
     @computer = Player.new("ALMIGHTY COMPUTER")
-    @board = Board.new
+    board = Board.new
+    board.print_board
+
+    player_move
 
     show_final_score
   end
@@ -88,6 +88,13 @@ class Game
     print msg
       return gets.chomp
   end
+
+  def player_move
+    puts "Enter 1-9 for space 1-9"
+    puts ">"
+    gets.chomp
+  end
+
 end
 
 Game.new.start
