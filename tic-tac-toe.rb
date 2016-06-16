@@ -6,7 +6,7 @@
 
 class Board
   def initialize
-    @space = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    @response = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
   end
 
   def print_board
@@ -17,11 +17,6 @@ class Board
   --+---+--
     |   |
     """
-
-  end
-
-  def computer_move
-
   end
 end
 
@@ -32,15 +27,10 @@ class Player
 
   def initialize(name)
     @name = name
-    @score = 0
-  end
-
-  def show_marker
-    "#{@name} plays #{@marker}"
   end
 
   def show_score
-    "#{@name} has #{@score}"
+    "#{@name} plays #{@response}"
   end
 end
 
@@ -95,6 +85,9 @@ class Game
     gets.chomp
   end
 
+  def computer_move
+
+  end
 end
 
 Game.new.start
