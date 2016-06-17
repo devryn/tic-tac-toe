@@ -60,6 +60,7 @@ class Game
     #puts "> "
     #gets.chomp
 
+
     move = player_move.to_i
     board.spaces[move] = "x"
     board.print_board
@@ -76,9 +77,6 @@ class Game
     while count < 9
       puts "Your move."
       count +=1
-
-
-
       exit if response == "q" #does not work
     end
   end
