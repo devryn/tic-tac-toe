@@ -5,17 +5,18 @@
 # The AI (computer player) chooses a random open square each time it is their turn.
 
 class Board
+  attr_accessor :spaces
   def initialize
-    @response = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+    @spaces = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   end
 
   def print_board
     puts
-  puts  """    |   |
+  puts  """  #{@spaces[1]} | #{@spaces[2]} | #{@spaces[3]}
   --+---+--
-    |   |
+  #{@spaces[4]} | #{@spaces[5]} | #{@spaces[6]}
   --+---+--
-    |   |
+  #{@spaces[7]} | #{@spaces[8]} | #{@spaces[9]}
     """
   end
 end
@@ -29,9 +30,9 @@ class Player
     @name = name
   end
 
-  def show_score
-    "#{@name} plays #{@response}"
-  end
+  #def show_score
+  #  "#{@name} plays #{@response}"
+  #end
 end
 
 class Game
@@ -56,17 +57,29 @@ class Game
     board = Board.new
     board.print_board
 
-    player_move
+    loop do
+      move = player_move.to_i
+      board.spaces[move] = "x"
+      board.print_board
+
+      move = computer_move.to_i #prints dup of board
+      board.spaces[move] = "x"
+      board.print_board
+
+      exit if response == "q" #does not work
+    elsif puts "I don't understand. Please type a number between 1-9."
+    end
+  end
 
     show_final_score
-  end
+end
 
   def show_board
   end
 
   def show_final_score
-    puts @player.show_score
-    puts @computer.show_score
+#    puts @player.show_score
+#    puts @computer.show_score
   end
   def welcome
     puts
@@ -85,9 +98,17 @@ class Game
     gets.chomp
   end
 
-  def computer_move
+  def computer_move #automated computer move - what to put?
 
   end
 end
+
+#get computer_move, add to loop
+#quit loop
+#end when board full
+#puts comp wins, user wins, or draw
+#invalid entry method
+#check for three in a row
+
 
 Game.new.start
