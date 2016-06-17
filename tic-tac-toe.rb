@@ -38,7 +38,7 @@ end
 class Game
   def welcome
     puts
-    puts "Welcome to Tic-Tac-Toe"
+    puts "Welcome to Tic-Tac-Toe!"
     puts
   end
 
@@ -56,41 +56,37 @@ class Game
     @computer = Player.new("ALMIGHTY COMPUTER")
     board = Board.new
     board.print_board
+    puts "Enter 1-9 for space 1-9"
+    puts "> "
+    gets.chomp
 
-    loop do
+
+    response = gets.chomp
+
+
+
+    count = 0
+    while count < 9
+      puts "Your move."
+      count +=1
+
       move = player_move.to_i
       board.spaces[move] = "x"
       board.print_board
 
       move = computer_move.to_i #prints dup of board
-      board.spaces[move] = "x"
+      board.spaces[move] = "o"
       board.print_board
 
       exit if response == "q" #does not work
-    elsif puts "I don't understand. Please type a number between 1-9."
     end
   end
+        #break
+      #end
+    #end
+     #puts "I don't understand. Please type a number between 1-9."
+    #end - move somewhere else?
 
-    show_final_score
-end
-
-  def show_board
-  end
-
-  def show_final_score
-#    puts @player.show_score
-#    puts @computer.show_score
-  end
-  def welcome
-    puts
-    puts "Welcome to Tic-Tac-Toe!"
-    puts
-  end
-
-  def prompt(msg)
-    print msg
-      return gets.chomp
-  end
 
   def player_move
     puts "Enter 1-9 for space 1-9"
@@ -99,9 +95,19 @@ end
   end
 
   def computer_move #automated computer move - what to put?
-
+    ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].sample
   end
-end
+#    show_final_score
+
+
+#  def show_final_score
+#    puts @player.show_score
+#    puts @computer.show_score
+#  end
+
+
+
+
 
 #get computer_move, add to loop
 #quit loop
@@ -109,6 +115,7 @@ end
 #puts comp wins, user wins, or draw
 #invalid entry method
 #check for three in a row
+#cannot choose same space if taken
 
-
+end
 Game.new.start
