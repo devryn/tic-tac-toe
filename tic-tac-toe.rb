@@ -68,12 +68,6 @@ def reset_screen
   system('clear')
 end
 
-def illegal_move(player_move)
-  if player_move.to_i > 9 || player_move.to_i <= 0
-    puts "Illegal entry. Try again."
-    player_move = gets.chomp
-  end
-end
 
     count = 0
     while count < 9
@@ -84,21 +78,20 @@ end
         break
       end
 
-      illegal_move(player_move)
+      if player_move.to_i > 9 || player_move.to_i <= 0
+        puts "Illegal entry. Try again."
+        player_move = gets.chomp
+      else
+        board.spaces[player_move.to_i] = "x"
+        board.print_board
 
+        move = computer_move.to_i #prints dup of board
+        board.spaces[move] = "o"
+        puts move
+        board.print_board
 
-      #reset_screen
-
-      board.spaces[player_move.to_i] = "x"
-      board.print_board
-
-      move = computer_move.to_i #prints dup of board
-      board.spaces[move] = "o"
-      puts move
-      board.print_board
-
-      count +=1
-
+        count +=1
+      end
     end
   end
 
