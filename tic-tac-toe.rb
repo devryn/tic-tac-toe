@@ -56,42 +56,46 @@ class Game
     @computer = Player.new("ALMIGHTY COMPUTER")
     board = Board.new
     board.print_board
-    puts "Enter 1-9 for space 1-9 or q to quit."
 
-def illegal_entry
-  if player_move == ""
-    puts "Illegal entry. Try again."
-  end
-end
+#def illegal_entry(board)
+#  if player_move == ""
+#    puts "Illegal entry. Try again."
+#  end
+#end
 
 def reset_screen
   sleep(0.1)
   system('clear')
 end
 
+def illegal_move(player_move)
+  if player_move.to_i > 9 || player_move.to_i <= 0
+    puts "Illegal entry. Try again."
+    player_move = gets.chomp
+  end
+end
 
     count = 0
     while count < 9
-      puts "Your move. Enter 1-9 to play or 0 to exit."
-      player_move = gets.chomp.to_i
+      puts "Your move. Enter 1-9 to play."
+      player_move = gets.chomp
 
-      if player_move == 0 #working!!
+      if player_move == "q" #working!!
         break
       end
 
-        if player_move > 10 || player_move < 0
-        end
+      illegal_move(player_move)
 
-        reset_screen
 
-      board.spaces[player_move] = "x"
+      #reset_screen
+
+      board.spaces[player_move.to_i] = "x"
       board.print_board
 
       move = computer_move.to_i #prints dup of board
       board.spaces[move] = "o"
+      puts move
       board.print_board
-
-
 
       count +=1
 
@@ -107,7 +111,7 @@ end
 
 
   def computer_move #automated computer move - what to put?
-    ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].sample
+    ['1', '2', '3', '4', '5', '6', '7', '8', '9'].sample
   end
 #    show_final_score
 
