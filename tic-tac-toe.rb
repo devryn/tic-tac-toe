@@ -56,10 +56,17 @@ class Game
     @computer = Player.new("ALMIGHTY COMPUTER")
     board = Board.new
     board.print_board
-    puts "Enter 1-9 for space 1-9"
-    puts "> "
-    gets.chomp
+    #puts "Enter 1-9 for space 1-9"
+    #puts "> "
+    #gets.chomp
 
+    move = player_move.to_i
+    board.spaces[move] = "x"
+    board.print_board
+
+    move = computer_move.to_i #prints dup of board
+    board.spaces[move] = "o"
+    board.print_board
 
     response = gets.chomp
 
@@ -70,13 +77,7 @@ class Game
       puts "Your move."
       count +=1
 
-      move = player_move.to_i
-      board.spaces[move] = "x"
-      board.print_board
 
-      move = computer_move.to_i #prints dup of board
-      board.spaces[move] = "o"
-      board.print_board
 
       exit if response == "q" #does not work
     end
