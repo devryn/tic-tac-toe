@@ -19,6 +19,9 @@ class Board
   #{@spaces[7]} | #{@spaces[8]} | #{@spaces[9]}
     """
   end
+  def available_space
+  @spaces.map { |space| space != 'x' || space != 'o'}
+  end
 end
 
 
@@ -29,11 +32,8 @@ class Player
   def initialize(name)
     @name = name
   end
-
-  #def show_score
-  #  "#{@name} plays #{@response}"
-  #end
 end
+
 
 class Game
   def welcome
@@ -57,16 +57,12 @@ class Game
     board = Board.new
     board.print_board
 
-#def illegal_entry(board)
-#  if player_move == ""
-#    puts "Illegal entry. Try again."
-#  end
-#end
-
 def reset_screen
   sleep(0.1)
   system('clear')
 end
+
+
 
 
     count = 0
@@ -86,7 +82,7 @@ end
         board.print_board
 
         move = computer_move.to_i #prints dup of board
-        board.spaces[move] = "o"
+        board.spaces[move.available_space] = "o"
         puts move
         board.print_board
 
@@ -95,18 +91,9 @@ end
     end
   end
 
-
-
-     #puts "I don't understand. Please type a number between 1-9."
-    #end - move somewhere else?
-
-
-
-
   def computer_move #automated computer move - what to put?
     ['1', '2', '3', '4', '5', '6', '7', '8', '9'].sample
   end
-#    show_final_score
 
 
 #  def show_final_score
@@ -119,7 +106,6 @@ end
 
 #end when board full
 #puts comp wins, user wins, or draw
-#invalid entry method
 #check for three in a row
 #cannot choose same space if taken
 
