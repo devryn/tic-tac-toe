@@ -56,42 +56,44 @@ class Game
     @computer = Player.new("ALMIGHTY COMPUTER")
     board = Board.new
     board.print_board
-    #puts "Enter 1-9 for space 1-9"
-    #puts "> "
-    #gets.chomp
+    puts "Enter 1-9 for space 1-9 or q to quit."
 
 
-    move = player_move.to_i
-    board.spaces[move] = "x"
-    board.print_board
 
-    move = computer_move.to_i #prints dup of board
-    board.spaces[move] = "o"
-    board.print_board
-
-    response = gets.chomp
 
 
 
     count = 0
     while count < 9
-      puts "Your move."
+      puts "Your move. Enter 1-9 to play or 0 to exit."
+      player_move = gets.chomp.to_i
+
+      if player_move == 0 #working!!
+        break
+      end
+
+        if player_move > 10 || player_move < 0
+        end
+
+      board.spaces[player_move] = "x"
+      board.print_board
+
+      move = computer_move.to_i #prints dup of board
+      board.spaces[move] = "o"
+      board.print_board
+
       count +=1
-      exit if response == "q" #does not work
+
     end
   end
-        #break
-      #end
-    #end
+
+
+
      #puts "I don't understand. Please type a number between 1-9."
     #end - move somewhere else?
 
 
-  def player_move
-    puts "Enter 1-9 for space 1-9"
-    puts ">"
-    gets.chomp
-  end
+
 
   def computer_move #automated computer move - what to put?
     ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].sample
@@ -107,9 +109,6 @@ class Game
 
 
 
-
-#get computer_move, add to loop
-#quit loop
 #end when board full
 #puts comp wins, user wins, or draw
 #invalid entry method
