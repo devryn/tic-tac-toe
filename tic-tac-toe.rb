@@ -58,9 +58,16 @@ class Game
     board.print_board
     puts "Enter 1-9 for space 1-9 or q to quit."
 
+def illegal_entry
+  if player_move == ""
+    puts "Illegal entry. Try again."
+  end
+end
 
-
-
+def reset_screen
+  sleep(0.1)
+  system('clear')
+end
 
 
     count = 0
@@ -75,12 +82,16 @@ class Game
         if player_move > 10 || player_move < 0
         end
 
+        reset_screen
+
       board.spaces[player_move] = "x"
       board.print_board
 
       move = computer_move.to_i #prints dup of board
       board.spaces[move] = "o"
       board.print_board
+
+
 
       count +=1
 
