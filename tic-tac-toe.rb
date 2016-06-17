@@ -28,6 +28,7 @@ end
 
 
 class Player
+  attr_reader :name
   def initialize(name)
     @name = name
   end
@@ -56,14 +57,6 @@ class Game
     board = Board.new
     board.print_board
 
-def reset_screen
-  sleep(0.1)
-  system('clear')
-end
-
-
-
-
     while board.available_space.count > 0
       puts "Your move. Enter 1-9 to play."
       player_move = gets.chomp
@@ -86,20 +79,74 @@ end
         board.print_board
       end
 
+      if board.spaces[1] == 'x' && board.spaces[2] == 'x' && board.spaces[3] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[1] == 'x' && board.spaces[5] == 'x' && board.spaces[9] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[1] == 'x' && board.spaces[4] == 'x' && board.spaces[7] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[2] == 'x' && board.spaces[5] == 'x' && board.spaces[8] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[3] == 'x' && board.spaces[6] == 'x' && board.spaces[9] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[3] == 'x' && board.spaces[5] == 'x' && board.spaces[7] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[1] == 'o' && board.spaces[2] == 'o' && board.spaces[3] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
+      if board.spaces[1] == 'o' && board.spaces[4] == 'o' && board.spaces[7] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
+      if board.spaces[1] == 'o' && board.spaces[5] == 'o' && board.spaces[9] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
+      if board.spaces[2] == 'o' && board.spaces[5] == 'o' && board.spaces[8] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
+      if board.spaces[3] == 'o' && board.spaces[6] == 'o' && board.spaces[9] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
+      if board.spaces[3] == 'o' && board.spaces[5] == 'o' && board.spaces[7] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
     end
-    puts "Draw. You both lose."
+    puts "Draw. You both lose!"
+    break
   end
 
   def computer_move(board) #automated computer move - what to put?
     board.available_space.sample.to_i
   end
-
-
-#  def show_final_score
-#    puts @player.show_score
-#    puts @computer.show_score
-#  end
-
 
 
 
