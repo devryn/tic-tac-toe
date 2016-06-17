@@ -20,15 +20,14 @@ class Board
     """
   end
   def available_space
-  @spaces.map { |space| space != 'x' || space != 'o'}
+    available = @spaces.clone
+    available.delete("0")
+    available.select { |space| space != 'x' && space != 'o' }
   end
 end
 
 
 class Player
-  attr_reader :name
-  attr_accessor :markers
-
   def initialize(name)
     @name = name
   end
@@ -65,8 +64,7 @@ end
 
 
 
-    count = 0
-    while count < 9
+    while board.available_space.count > 0
       puts "Your move. Enter 1-9 to play."
       player_move = gets.chomp
 
@@ -76,23 +74,24 @@ end
 
       if player_move.to_i > 9 || player_move.to_i <= 0
         puts "Illegal entry. Try again."
-        player_move = gets.chomp
+      elsif board.spaces[player_move.to_i] == "x" || board.spaces[player_move.to_i] == "o"
+        puts "Illegal entry. Try again."
       else
         board.spaces[player_move.to_i] = "x"
         board.print_board
 
-        move = computer_move.to_i #prints dup of board
-        board.spaces[move.available_space] = "o"
+        move = computer_move(board)
+        board.spaces[move] = "o"
         puts move
         board.print_board
-
-        count +=1
       end
+
     end
+    puts "Draw. You both lose."
   end
 
-  def computer_move #automated computer move - what to put?
-    ['1', '2', '3', '4', '5', '6', '7', '8', '9'].sample
+  def computer_move(board) #automated computer move - what to put?
+    board.available_space.sample.to_i
   end
 
 
@@ -104,10 +103,8 @@ end
 
 
 
-#end when board full
 #puts comp wins, user wins, or draw
 #check for three in a row
-#cannot choose same space if taken
 
 end
 Game.new.start
