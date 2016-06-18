@@ -157,11 +157,15 @@ class Game
         puts "ALMIGHTY COMPUTER WINS >:)"
         break
       end
-    end
+
 
     if board.available_space.count == 0
-    puts "Draw. You both lose!"
+        puts "Draw. You both lose!"
+        break
     end
+    end
+
+
   end
 
 
