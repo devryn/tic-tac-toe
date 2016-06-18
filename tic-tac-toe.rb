@@ -160,9 +160,7 @@ class Game
       end
 
     end
-    #if
-    #puts "Draw. You both lose!"
-    #break
+    puts "Draw. You both lose!"
   end
 
   def computer_move(board) #automated computer move - what to put?
