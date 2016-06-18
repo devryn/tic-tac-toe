@@ -109,6 +109,16 @@ class Game
         break
       end
 
+      if board.spaces[4] == 'x' && board.spaces[5] == 'x' && board.spaces[6] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
+      if board.spaces[7] == 'x' && board.spaces[8] == 'x' && board.spaces[9] == 'x'
+        puts "#{@player.name} wins! >:("
+        break
+      end
+
       if board.spaces[1] == 'o' && board.spaces[2] == 'o' && board.spaces[3] == 'o'
         puts "ALMIGHTY COMPUTER WINS >:)"
         break
@@ -139,9 +149,20 @@ class Game
         break
       end
 
+      if board.spaces[4] == 'o' && board.spaces[5] == 'o' && board.spaces[6] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
+      if board.spaces[7] == 'o' && board.spaces[8] == 'o' && board.spaces[9] == 'o'
+        puts "ALMIGHTY COMPUTER WINS >:)"
+        break
+      end
+
     end
-    puts "Draw. You both lose!"
-    break
+    #if
+    #puts "Draw. You both lose!"
+    #break
   end
 
   def computer_move(board) #automated computer move - what to put?
